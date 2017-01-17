@@ -6,9 +6,11 @@ use Mail;
 use Session;
 use Sentinel;
 use Activation;
+use File;
 use App\Http\Requests;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 
 class RegistrationController extends Controller
@@ -79,6 +81,12 @@ class RegistrationController extends Controller
             }
         );
 
+		//Create Root map for each user 
+		
+		$hashedMap('user_id') = substr(md5(uniqid(rand(),1)),0,32);
+		
+		$rootMaps = Storage::allDirectories($rootMaps);
+		
         // Ask the user to check their email for the activation link
         $result->setMessage('Registration complete.  Please check your email for activation instructions.');
 
