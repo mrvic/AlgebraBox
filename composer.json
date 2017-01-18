@@ -24,7 +24,11 @@
     "autoload": {
         "classmap": [
             "database",
+<<<<<<< HEAD
 			"App\\":"app"
+=======
+			"app/Models"
+>>>>>>> 245f13c89b8e127ca627762583daee5fa342de3e
         ],
         "psr-4": {
             "App\\": "app/"
