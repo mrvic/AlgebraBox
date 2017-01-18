@@ -1,19 +1,26 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\File;
 
 use Mail;
 use Session;
 use Sentinel;
 use Activation;
+<<<<<<< HEAD
 use File;
+=======
+Use Hash;
+Use File;
+>>>>>>> 5e921d0768af3b08b3eff85bda8a426f717d6553
 use App\Http\Requests;
 use Centaur\AuthManager;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 
-class RegistrationController extends Controller
+
+
 {
     /** @var Centaur\AuthManager */
     protected $authManager;
@@ -81,11 +88,18 @@ class RegistrationController extends Controller
             }
         );
 
+<<<<<<< HEAD
 		//Create Root map for each user 
 		
 		$hashedMap('user_id') = substr(md5(uniqid(rand(),1)),0,32);
 		
 		$rootMaps = Storage::allDirectories($rootMaps);
+=======
+		//Hashirana mapa nakon registracije
+		$hashed_map = sha1('$result->user->email');
+        File::makeDirectory(base_path("storage/app/public/usermaps/$year-$hashed_map"), 0755, true, true);
+		// return $user;
+>>>>>>> 5e921d0768af3b08b3eff85bda8a426f717d6553
 		
         // Ask the user to check their email for the activation link
         $result->setMessage('Registration complete.  Please check your email for activation instructions.');
