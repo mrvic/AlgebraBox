@@ -29,7 +29,13 @@
 				</div>
 			</div>
 			<div class="panel-body">
-				
+				<div class="list-group">
+					@foreach($user_categories as $kategorije)
+						<tr>
+							<td>{{$kategorije->name}}</td>
+						</tr>
+					@endforeach
+				</div>
 			</div>
 		</div>
 	</div>
