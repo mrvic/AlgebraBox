@@ -13,7 +13,7 @@ class category extends Model
 	  */
 	 protected $table = 'categories';
 	 
-	 public function kategorije()
+	 public function owner()
 	 {
 		 return $this->belongsTo(App\user);
 	 }
