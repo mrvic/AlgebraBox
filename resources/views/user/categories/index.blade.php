@@ -59,6 +59,49 @@
 								</div>
 						</div>	
 				</div>
+			</div>
+
+			<div class="panel-body">
+				<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Category name</th>
+        <th>Section</th>
+		<th></th>
+      </tr>
+    </thead>
+    <tbody>
+		
+		
+	@foreach($categories as $category)
+
+			
+			
+      <tr>
+        <td>{{ $category->id }}</td>
+		 <td>{{ $category->name }}</td>
+		  <td>{{ $category->sections->name }}</td>
+		  <td>
+		  <a href="{{ route('categories.edit', $category->id) }}"><span class="label label-success">Edit</span></a>
+		  </td>
+		  <td>
+			<form class="delete" action="{{ route('categories.destroy', $category->id) }}" method="POST">
+				<input type="hidden" name="_method" value="DELETE">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+				
+				<button type="submit" class="btn btn-default"><span class="label label-danger">Delete</span></button>
+			</form>
+		   </td>
+        
+      </tr>
+	  
+	@endforeach
+      
+    </tbody>
+  </table>
+			<div>
+
 				
 				<div class="col-md-4 background-orange">
 						<div class="status-info">
