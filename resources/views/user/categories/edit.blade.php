@@ -37,7 +37,7 @@
       
 	        <select class="form-control" name="sections_id">
 			@foreach($sections as $section)
-            			<option value="{{ $section->id }}">{{ $section->name }}</option>
+            			<option value="{{ $section->id }}" {{ $categories->section_id==$section->id ? 'selected': null }}>{{ $section->name }}</option>
 			@endforeach
                </select>
 	       </div>
@@ -46,12 +46,13 @@
 	       <div class="form-group">
 	       <label for="name">Category name:</label>
 			
-		   <input type="text" class="form-control" name="name" required>
-		   		   
+		   <input type="text" class="form-control" name="name" id="name" value="{{ $categories->name }}">
+		   		  
 			
 			</div>
-			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			<button type="submit" class="btn btn-default">Submit</button>
+			<input type="hidden" name="_method" value="PUT">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+				<<button type="submit" class="btn btn-default">Save</button>
 			</form>
 		</div>
 	</div>

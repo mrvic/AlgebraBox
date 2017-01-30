@@ -55,13 +55,17 @@
 		 <td>{{ $category->name }}</td>
 		  <td>{{ $category->sections->name }}</td>
 		  <td>
-		  <span class="label label-success">Edit</span>
-		  <span class="label label-danger">Delete</span> 
+		  <a href="{{ route('categories.edit', $category->id) }}"><span class="label label-success">Edit</span></a>
 		  </td>
-		  
-        <td>
-		</td>
-        <td></td>
+		  <td>
+			<form class="delete" action="{{ route('categories.destroy', $category->id) }}" method="POST">
+				<input type="hidden" name="_method" value="DELETE">
+				<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+				
+				<button type="submit" class="btn btn-default"><span class="label label-danger">Delete</span></button>
+			</form>
+		   </td>
+        
       </tr>
 	  
 	@endforeach

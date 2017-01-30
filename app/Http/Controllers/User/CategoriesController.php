@@ -59,10 +59,6 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
 		
-		
-		
-		
-		
 		 // Unos u tablicu categories
         $categories = new Categories();
         $categories->name = $request->name;
@@ -81,7 +77,7 @@ class CategoriesController extends Controller
 		
 		// return na list
 		
-      
+       session()->flash('success', "New category '{$categories->name}' has been created.");
        return redirect()->route('categories.index');
     }
 
@@ -93,7 +89,7 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -104,7 +100,9 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+		$categories = Categories::find($id);
+		$sections = Sections::all();
+        return view('user.categories.edit', compact('categories', 'sections')); 
     }
 
     /**
@@ -116,7 +114,17 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+
+		$categories = Categories::find($id);
+		$categories->name = $request->name;
+		$categories->sections_id = $request->sections_id;
+		$categories->save();
+		
+      
+      
+      //redirect page after save data
+      return redirect()->route('categories.index');
     }
 
     /**
@@ -127,6 +135,12 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // delete
+        $categories = Categories::find($id);
+        $categories->delete();
+
+        // redirect
+		session()->flash('success', "Category '{$categories->name}' has been deleted.");
+        return redirect()->route('categories.index');
     }
 }
