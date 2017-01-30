@@ -52,7 +52,7 @@
 			</div>
 			<input type="hidden" name="_method" value="PUT">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}" />
-				<<button type="submit" class="btn btn-default">Save</button>
+				<button type="submit" class="btn btn-default">Save</button>
 			</form>
 		</div>
 	</div>
