@@ -102,6 +102,7 @@ class CategoriesController extends Controller
     {
 		$categories = Categories::find($id);
 		$sections = Sections::all();
+		
         return view('user.categories.edit', compact('categories', 'sections')); 
     }
 
@@ -115,7 +116,6 @@ class CategoriesController extends Controller
     public function update(Request $request, $id)
     {
         
-
 		$categories = Categories::find($id);
 		$categories->name = $request->name;
 		$categories->sections_id = $request->sections_id;
@@ -140,7 +140,7 @@ class CategoriesController extends Controller
         $categories->delete();
 
         // redirect
-		session()->flash('success', "Category '{$categories->name}' has been deleted.");
+		//session()->flash('success', "Category '{$categories->name}' has been deleted.");
         return redirect()->route('categories.index');
     }
 }

@@ -43,7 +43,6 @@
 	</div>
 	<div class="col-md-9">
 		<div class="panel-default">
-			<div class="clearfix">
 				
 				<div class="col-md-4 background-blue">
 						<div class="status-info">
@@ -59,48 +58,7 @@
 								</div>
 						</div>	
 				</div>
-			</div>
 
-			<div class="panel-body">
-				<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Category name</th>
-        <th>Section</th>
-		<th></th>
-      </tr>
-    </thead>
-    <tbody>
-		
-		
-	@foreach($categories as $category)
-
-			
-			
-      <tr>
-        <td>{{ $category->id }}</td>
-		 <td>{{ $category->name }}</td>
-		  <td>{{ $category->sections->name }}</td>
-		  <td>
-		  <a href="{{ route('categories.edit', $category->id) }}"><span class="label label-success">Edit</span></a>
-		  </td>
-		  <td>
-			<form class="delete" action="{{ route('categories.destroy', $category->id) }}" method="POST">
-				<input type="hidden" name="_method" value="DELETE">
-				<input type="hidden" name="_token" value="{{ csrf_token() }}" />
-				
-				<button type="submit" class="btn btn-default"><span class="label label-danger">Delete</span></button>
-			</form>
-		   </td>
-        
-      </tr>
-	  
-	@endforeach
-      
-    </tbody>
-  </table>
-			<div>
 
 				
 				<div class="col-md-4 background-orange">
@@ -147,21 +105,21 @@
 				<div class="clearfix loop-names">
 					<div class="col-md-4">
 						<div class="status-info">
-								<h5 class="blue">ID</h5>
+								<h5 class="blue">ID & Category name</h5>
 						</div>	
 					</div>
 							
 					<div class="col-md-4">
 						<div class="status-info">
-							<h5 class="orange">Category name</h5>
+							<h5 class="orange">Section</h5>
 						</div>	
 					</div>
 							  
 					<div class="col-md-4">
 						<div class="status-info">
-							<h5 class="green">Section</h5>
+							<h5 class="green">Option</h5>
 						</div>	
-					</div>	
+					</div>
 				</div>
 				
 				<div class="inner-loop">	
@@ -172,21 +130,21 @@
 					<div class="clearfix loop-inner">
 					<div class="col-md-4">
 						<div class="loop-categories">
-							<p>{{ $category->id }}</p>
+							<p>{{ $category->id }}. {{ $category->name }}</p>
 						</div>	
 					</div>
 							
 					<div class="col-md-4">
 						<div class="loop-categories">
-							<p>{{ $category->name }}</p>
+							<p>{{ $category->sections->name }}</p>
 						</div>	
 					</div>
 							  
 					<div class="col-md-4">
 						<div class="loop-categories">
 							<p class="btn-edit">
-								<a class="btn background-blue" href="#" role="button">Edit</a>
-								<a class="btn background-orange" href="#" role="button">Delete</a>
+								<a class="btn background-blue" href="{{ route('categories.edit', $category->id) }}" role="button">Edit</a>
+								<a class="btn background-orange action_confirm" href="{{ route('categories.destroy', $category->id) }}" role="button"  data-method="delete" data-token="{{ csrf_token() }}">Delete</a>
 							 </p>
 						</div>	
 					</div>	
