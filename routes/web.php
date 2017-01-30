@@ -19,7 +19,12 @@ Route::get('home', ['as' => 'home', 'uses' => 'User\HomeController@index']);
 //Categories page
 Route::group(['prefix' => 'user'], function () {
   Route::resource('categories', 'User\CategoriesController');
+  Route::post('categories/store', ['uses' => 'User\CategoriesController@store']);
+
 });
+
+     
+
 // Authorization
 Route::get('login', ['as' => 'auth.login.form', 'uses' => 'Auth\SessionController@getLogin']);
 Route::post('login', ['as' => 'auth.login.attempt', 'uses' => 'Auth\SessionController@postLogin']);

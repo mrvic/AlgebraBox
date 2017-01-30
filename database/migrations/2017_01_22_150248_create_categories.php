@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreateCategories extends Migration
 {
     /**
      * Run the migrations.
@@ -15,15 +15,16 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('name', 50);
-			$table->integer('users_id')->unsigned();
-			$table->boolean('default')->default(false);
+			$table->string('name');
+			$table->integer('sections_id')->unsigned();
             $table->timestamps();
+			
 			#Index
-			$table->index('users_id');
+			$table->index('sections_id');
 			
 			#Foreign key
-			$table->foreign('users_id')->references('id')->on('users');
+			$table->foreign('sections_id')->references('id')->on('sections');
+			
         });
     }
 
