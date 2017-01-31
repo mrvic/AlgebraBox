@@ -38,17 +38,9 @@
 	
 	<div class="col-md-9">
 
-		<div class="panel panel-default">
-			<div class="panel-heading clearfix">
-				<h3 class="pull-left panel-title">Categories</h3>
-				<div class="pull-right">
-					<a href="{{route('categories.create')}}">
-						<span class="pull-right glyphicon glyphicon-tag" aria-hidden="true"></span>
-						<span class="pull-right glyphicon glyphicon-plus" aria-hidden="true"></span>
-					</a>
-				</div>
-			</div>
-			<div class="panel-body">
+		<div class="panel-default">
+
+			<div class="clearfix loop-names">
 			<form action="/user/categories" method="POST">
 
 			
