@@ -228,6 +228,7 @@
 		padding-left: 0;
 		border-bottom: 1px solid #9ea7b3;
 	}
+	
  /*
 |--------------------------------------------------------------------------
 | LOGIN / REGISTER Forma
@@ -558,6 +559,10 @@
 		margin-left: 20px;
 	}
 	
+	#create-folder .form-group,
+	#categories-edit .form-group {
+    margin: -4px 0;
+}
 
 /*
 |--------------------------------------------------------------------------
