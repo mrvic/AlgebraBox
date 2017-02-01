@@ -123,36 +123,37 @@
 				</div>
 				
 				<div class="inner-loop">	
-				
-				@foreach($categories as $category)
-
-						
+				@if ($categories->categories->count() > 0)
+					@foreach($categories->categories as $category)
+					
+						<div class="clearfix loop-inner">
+						<div class="col-md-4">
+							<div class="loop-categories">
+								<p>{{ $category->id }}. {{ $category->name }}</p>
+							</div>	
+						</div>
+								
+						<div class="col-md-4">
+							<div class="loop-categories">
+								<p>{{ $category->sections->name }}</p>
+							</div>	
+						</div>
+								  
+						<div class="col-md-4">
+							<div class="loop-categories">
+								<p class="btn-edit">
+									<a class="btn background-blue" href="{{ route('categories.edit', $category->id) }}" role="button">Edit</a>
+									<a class="btn background-orange action_confirm" href="{{ route('categories.destroy', $category->id) }}" role="button"  data-method="delete" data-token="{{ csrf_token() }}">Delete</a>
+								 </p>
+							</div>	
+						</div>	
+					</div>
+					@endforeach
+				@else
 					<div class="clearfix loop-inner">
-					<div class="col-md-4">
-						<div class="loop-categories">
-							<p>{{ $category->id }}. {{ $category->name }}</p>
-						</div>	
+						<p>No categories!</p>
 					</div>
-							
-					<div class="col-md-4">
-						<div class="loop-categories">
-							<p>{{ $category->sections->name }}</p>
-						</div>	
-					</div>
-							  
-					<div class="col-md-4">
-						<div class="loop-categories">
-							<p class="btn-edit">
-								<a class="btn background-blue" href="{{ route('categories.edit', $category->id) }}" role="button">Edit</a>
-								<a class="btn background-orange action_confirm" href="{{ route('categories.destroy', $category->id) }}" role="button"  data-method="delete" data-token="{{ csrf_token() }}">Delete</a>
-							 </p>
-						</div>	
-					</div>	
-				</div>
-				  
-				  
-				@endforeach
-      
+				@endif
 
 		</div>
 	</div>

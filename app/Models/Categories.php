@@ -16,7 +16,7 @@ public function sections()
 	
 public function users()
     {
-        return $this->belongsToMany('App\Models\Users', 'categorie_user');
+        return $this->belongsToMany('App\Models\Users', 'categorie_user','categorie_id','user_id');
     }
 	
 }

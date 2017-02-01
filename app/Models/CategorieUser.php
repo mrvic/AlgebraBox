@@ -10,7 +10,7 @@ class CategorieUser extends Model
 	
 	
 	public function categories(){
-		return $this->belongsTo('App\Models\Categories', 'categorie_id')
+		return $this->belongsTo('App\Models\Categories', 'categorie_id');
 	}
 	
 }

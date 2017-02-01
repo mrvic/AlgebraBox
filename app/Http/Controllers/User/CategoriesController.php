@@ -29,9 +29,9 @@ class CategoriesController extends Controller
     public function index()
 	
     {
+		$user = Sentinel::getUser();
 		
-		$categories = Categories::all();
-		
+		$categories = Users::findOrFail($user->id);
 		
         return view('user.categories.index', ['categories' => $categories]);
     }
@@ -44,7 +44,7 @@ class CategoriesController extends Controller
     public function create()
     {
 		
-    	$sections = sections::all();
+    	$sections = Sections::all();
 		
         return view('user.categories.create', ['sections' => $sections]);
     }
@@ -57,27 +57,31 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+		$user = Sentinel::getUser();
 		
-		 // Unos u tablicu categories
-        $categories = new Categories();
-        $categories->name = $request->name;
-		$categories->sections_id = $request->sections_id;
-        $categories->save();
+		$category = Categories::where('name', $request->name)->get();
 		
-		// Unos u pivot tablicu users_categories
+		foreach ($category as $cat){
+			$user = CategorieUser::where('categorie_id',$cat->id)->where('user_id', $user->id);
+		}
 		
-	    $user = Sentinel::getUser()->id;
-		
-		$users_categories = new CategorieUser();
-		$users_categories->user_id = $user;
-		$users_categories->categorie_id = $categories->id;
-		$users_categories->save();
-		
-		
-		// return na list
-		
-       session()->flash('success', "New category '{$categories->name}' has been created.");
-       return redirect()->route('categories.index');
+		if($category->count() > 0){
+			if($user->count() > 0){
+				return redirect()->route('categories.index');
+			}
+			else{
+				
+			}
+		}
+		else{
+			$categories = new Categories();
+			$categories->name = $request->name;
+			$categories->sections_id = $request->sections_id;
+			$categories->save();
+			$categories->users()->sync([$user->id]);
+		}		
+		session()->flash('success', "New category '{$categories->name}' has been created.");
+		return redirect()->route('categories.index');
     }
 
     /**

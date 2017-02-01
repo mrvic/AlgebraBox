@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Users extends Model
 {
-		protected $table = 'users';
+	protected $table = 'users';
 
 
-public function categories()
-    {
-        return $this->belongsToMany('App\Models\Categories', 'categorie_user');
-    }
+	public function categories()
+		{
+			return $this->belongsToMany('App\Models\Categories', 'categorie_user','user_id','categorie_id');
+		}
 	
 }
