@@ -11,7 +11,6 @@ use App\Models\Users;
 use App\Models\CategorieUser;
 
 
-
 class CategoriesController extends Controller
 {
 	
@@ -140,7 +139,7 @@ class CategoriesController extends Controller
         $categories->delete();
 
         // redirect
-		//session()->flash('success', "Category '{$categories->name}' has been deleted.");
+			//session()->flash('success', "Category '{$categories->name}' has been deleted.");
         return redirect()->route('categories.index');
     }
 }
