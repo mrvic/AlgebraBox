@@ -58,6 +58,58 @@
 								</div>
 						</div>	
 				</div>
+<<<<<<< HEAD
+			</div>
+
+			<div class="panel-body">
+<<<<<<< HEAD
+				<div class="list-group">
+					@foreach($user_categories as $kategorije)
+						<tr>
+							<td>{{$kategorije->name}}</td>
+						</tr>
+					@endforeach
+				</div>
+=======
+				<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Category name</th>
+        <th>Section</th>
+		<th></th>
+      </tr>
+    </thead>
+    <tbody>
+		
+		
+	@foreach($categories as $category)
+
+			
+			
+      <tr>
+        <td>{{ $category->id }}</td>
+		 <td>{{ $category->name }}</td>
+		  <td>{{ $category->sections->name }}</td>
+		  <td>
+		  <span class="label label-success">Edit</span>
+		  <span class="label label-danger">Delete</span> 
+		  </td>
+		  
+        <td>
+		</td>
+        <td></td>
+      </tr>
+	  
+	@endforeach
+      
+    </tbody>
+  </table>
+			<div>
+				
+>>>>>>> defd0b7a732eeee3f74b1c8b113c7cac6c66369f
+			</div>
+=======
 
 
 				
@@ -155,6 +207,7 @@
 					</div>
 				@endif
 
+>>>>>>> 00dce274d92839346cb8daa02bd893f256958b7e
 		</div>
 	</div>
 </div>

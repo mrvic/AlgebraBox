@@ -29,11 +29,19 @@ class CategoriesController extends Controller
     public function index()
 	
     {
+<<<<<<< HEAD
+<<<<<<< HEAD
+		$user_categories=category::orderBy('name','desc'->get()
+        return view('user.categories.index', 'user_categories'=>$user_categories);
+=======
+=======
 		$user = Sentinel::getUser();
+>>>>>>> 3376077e95d2882cc30a2885a42d1478178e50b3
 		
 		$categories = Users::findOrFail($user->id);
 		
         return view('user.categories.index', ['categories' => $categories]);
+>>>>>>> defd0b7a732eeee3f74b1c8b113c7cac6c66369f
     }
 
     /**
@@ -70,7 +78,10 @@ class CategoriesController extends Controller
 				return redirect()->route('categories.index');
 			}
 			else{
-				
+				$category_user = new CategorieUser;
+				$category_user->user_id = $user->id;
+				$category_user->categorie_id = $request->categorie_id;
+				$category_user->save();
 			}
 		}
 		else{
