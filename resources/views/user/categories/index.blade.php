@@ -151,7 +151,29 @@
 					@endforeach
 				@else
 					<div class="clearfix loop-inner">
-						<p>No categories!</p>
+				<div class="col-md-4">
+							<div class="loop-categories">
+								<p>UPS!</p>
+							</div>	
+						</div>
+						
+						<div class="col-md-4">
+							<div class="loop-categories">
+								<p>No categories!</p>
+							</div>	
+						</div>
+						
+						<div class="col-md-4">
+							<div class="loop-categories">
+								<p class="btn-edit">
+																		
+									<a class="btn background-green" title="Create new folder" href="{{route('categories.create')}}">
+											Create Folder
+										</a>
+										
+							</div>	
+						</div>
+						
 					</div>
 				@endif
 
