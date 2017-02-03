@@ -11,7 +11,6 @@ use App\Models\Users;
 use App\Models\CategorieUser;
 
 
-
 class CategoriesController extends Controller
 {
 	
@@ -31,12 +30,15 @@ class CategoriesController extends Controller
 	
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		$user_categories=category::orderBy('name','desc'->get()
         return view('user.categories.index', 'user_categories'=>$user_categories);
 =======
+=======
+		$user = Sentinel::getUser();
+>>>>>>> 3376077e95d2882cc30a2885a42d1478178e50b3
 		
-		$categories = Categories::all();
-		
+		$categories = Users::findOrFail($user->id);
 		
         return view('user.categories.index', ['categories' => $categories]);
 >>>>>>> defd0b7a732eeee3f74b1c8b113c7cac6c66369f
@@ -50,7 +52,7 @@ class CategoriesController extends Controller
     public function create()
     {
 		
-    	$sections = sections::all();
+    	$sections = Sections::all();
 		
         return view('user.categories.create', ['sections' => $sections]);
     }
@@ -63,27 +65,34 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+		$user = Sentinel::getUser();
 		
-		 // Unos u tablicu categories
-        $categories = new Categories();
-        $categories->name = $request->name;
-		$categories->sections_id = $request->sections_id;
-        $categories->save();
+		$category = Categories::where('name', $request->name)->get();
 		
-		// Unos u pivot tablicu users_categories
+		foreach ($category as $cat){
+			$user = CategorieUser::where('categorie_id',$cat->id)->where('user_id', $user->id);
+		}
 		
-	    $user = Sentinel::getUser()->id;
-		
-		$users_categories = new CategorieUser();
-		$users_categories->user_id = $user;
-		$users_categories->categorie_id = $categories->id;
-		$users_categories->save();
-		
-		
-		// return na list
-		
-       session()->flash('success', "New category '{$categories->name}' has been created.");
-       return redirect()->route('categories.index');
+		if($category->count() > 0){
+			if($user->count() > 0){
+				return redirect()->route('categories.index');
+			}
+			else{
+				$category_user = new CategorieUser;
+				$category_user->user_id = $user->id;
+				$category_user->categorie_id = $request->categorie_id;
+				$category_user->save();
+			}
+		}
+		else{
+			$categories = new Categories();
+			$categories->name = $request->name;
+			$categories->sections_id = $request->sections_id;
+			$categories->save();
+			$categories->users()->sync([$user->id]);
+		}		
+		session()->flash('success', "New category '{$categories->name}' has been created.");
+		return redirect()->route('categories.index');
     }
 
     /**
@@ -145,7 +154,7 @@ class CategoriesController extends Controller
         $categories->delete();
 
         // redirect
-		//session()->flash('success', "Category '{$categories->name}' has been deleted.");
+			//session()->flash('success', "Category '{$categories->name}' has been deleted.");
         return redirect()->route('categories.index');
     }
 }

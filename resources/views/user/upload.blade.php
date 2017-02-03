@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
-@section('title', 'Categories | AlgebraBox')
+@section('title', 'Search | AlgebraBox')
 
 @extends('includes.nav')
 
@@ -14,7 +14,7 @@
 
 	<ol class="breadcrumb">
 		<li><a href="{{route('home')}}">Home</a></li>
-	<li class="active">Categories</li>
+	<li class="active">Search</li>
 		
 		
 		<div id="user-search" class="pull-right">
@@ -58,58 +58,6 @@
 								</div>
 						</div>	
 				</div>
-<<<<<<< HEAD
-			</div>
-
-			<div class="panel-body">
-<<<<<<< HEAD
-				<div class="list-group">
-					@foreach($user_categories as $kategorije)
-						<tr>
-							<td>{{$kategorije->name}}</td>
-						</tr>
-					@endforeach
-				</div>
-=======
-				<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Category name</th>
-        <th>Section</th>
-		<th></th>
-      </tr>
-    </thead>
-    <tbody>
-		
-		
-	@foreach($categories as $category)
-
-			
-			
-      <tr>
-        <td>{{ $category->id }}</td>
-		 <td>{{ $category->name }}</td>
-		  <td>{{ $category->sections->name }}</td>
-		  <td>
-		  <span class="label label-success">Edit</span>
-		  <span class="label label-danger">Delete</span> 
-		  </td>
-		  
-        <td>
-		</td>
-        <td></td>
-      </tr>
-	  
-	@endforeach
-      
-    </tbody>
-  </table>
-			<div>
-				
->>>>>>> defd0b7a732eeee3f74b1c8b113c7cac6c66369f
-			</div>
-=======
 
 
 				
@@ -175,39 +123,37 @@
 				</div>
 				
 				<div class="inner-loop">	
-				@if ($categories->categories->count() > 0)
-					@foreach($categories->categories as $category)
-					
-						<div class="clearfix loop-inner">
-						<div class="col-md-4">
-							<div class="loop-categories">
-								<p>{{ $category->id }}. {{ $category->name }}</p>
-							</div>	
-						</div>
-								
-						<div class="col-md-4">
-							<div class="loop-categories">
-								<p>{{ $category->sections->name }}</p>
-							</div>	
-						</div>
-								  
-						<div class="col-md-4">
-							<div class="loop-categories">
-								<p class="btn-edit">
-									<a class="btn background-blue" href="{{ route('categories.edit', $category->id) }}" role="button">Edit</a>
-									<a class="btn background-orange action_confirm" href="{{ route('categories.destroy', $category->id) }}" role="button"  data-method="delete" data-token="{{ csrf_token() }}">Delete</a>
-								 </p>
-							</div>	
+				
+				@foreach($categories as $category)
+
+						
+					<div class="clearfix loop-inner">
+					<div class="col-md-4">
+						<div class="loop-categories">
+							<p>{{ $category->id }}. {{ $category->name }}</p>
 						</div>	
 					</div>
-					@endforeach
-				@else
-					<div class="clearfix loop-inner">
-						<p>No categories!</p>
+							
+					<div class="col-md-4">
+						<div class="loop-categories">
+							<p>{{ $category->sections->name }}</p>
+						</div>	
 					</div>
-				@endif
+							  
+					<div class="col-md-4">
+						<div class="loop-categories">
+							<p class="btn-edit">
+								<a class="btn background-blue" href="{{ route('categories.edit', $category->id) }}" role="button">Edit</a>
+								<a class="btn background-orange action_confirm" href="{{ route('categories.destroy', $category->id) }}" role="button"  data-method="delete" data-token="{{ csrf_token() }}">Delete</a>
+							 </p>
+						</div>	
+					</div>	
+				</div>
+				  
+				  
+				@endforeach
+      
 
->>>>>>> 00dce274d92839346cb8daa02bd893f256958b7e
 		</div>
 	</div>
 </div>
