@@ -31,6 +31,7 @@ Run the Database Seeder. You may need to re-generate the autoloader before this 
 ```shell
 $ composer dump-autoload
 $ php artisan db:seed --class="SentinelDatabaseSeeder"
+$ php artisan db:seed --class="SectionsDatabaseSeeder"
 ```
 
 **Start server:**
