@@ -39,7 +39,7 @@ $ php artisan db:seed --class="SectionsDatabaseSeeder"
 $ php artisan serve
 ```
 
-After you start server visit type http://localhost:8000 to your browser
+After you start server visit http://localhost:8000
 
 ## License
 
